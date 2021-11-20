@@ -1,0 +1,25 @@
+server:
+  port : 8081
+spring:
+  profiles:
+    active: local
+  application:
+    name: service-A
+  sleuth:
+    propagation:
+      type: B3,W3C
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411
+serviceb:
+  url: http://localhost:8082
+  path:
+    greet: /greet/{id}
+grpc:
+  client:
+    servicec:
+      address: static://localhost:8183
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
