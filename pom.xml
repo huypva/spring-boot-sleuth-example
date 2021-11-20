@@ -10,7 +10,9 @@
     <name>Parent</name>
 
     <modules>
-        <module>spring-boot-sleuth</module>
+        <module>service-A</module>
+        <module>service-B</module>
+        <module>service-C</module>
     </modules>
 
     <build>
