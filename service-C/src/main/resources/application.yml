@@ -1,0 +1,13 @@
+grpc:
+  server:
+    port: 8183
+spring:
+  application:
+    name: service-C
+  profiles:
+    active: local
+  sleuth:
+    propagation:
+      type: B3,W3C
+  zipkin:
+    base-url: http://localhost:9411
