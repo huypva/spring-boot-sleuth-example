@@ -18,12 +18,12 @@ public class ServiceCClientImpl implements ServiceCClient {
   private ServiceCBlockingStub serviceCBlockingStub;
 
   @Override
-  public String greet(int id) {
+  public MessageC greet(int id) {
     GreetRequest request = GreetRequest.newBuilder()
         .setId(id)
         .build();
 
     GreetResponse response = this.serviceCBlockingStub.greet(request);
-    return response.getMessage();
+    return new MessageC(response.getMessage());
   }
 }

@@ -5,5 +5,5 @@ package io.codebyexample.servicea.dataprovider.servicec;
  * */
 public interface ServiceCClient {
 
-  String greet(int id);
+  MessageC greet(int id);
 }

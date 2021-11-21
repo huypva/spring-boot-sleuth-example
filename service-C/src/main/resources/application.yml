@@ -8,6 +8,8 @@ spring:
     active: local
   sleuth:
     propagation:
-      type: B3,W3C
+      type: B3 #,W3C
+    sampler:
+      probability: 0.5
   zipkin:
     base-url: http://localhost:9411

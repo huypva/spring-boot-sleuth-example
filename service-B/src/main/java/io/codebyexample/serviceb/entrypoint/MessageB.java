@@ -1,8 +1,7 @@
-package io.codebyexample.servicea.dataprovider.serviceb;
+package io.codebyexample.serviceb.entrypoint;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -11,8 +10,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class MessageB {
 
   private String message;
+
 }

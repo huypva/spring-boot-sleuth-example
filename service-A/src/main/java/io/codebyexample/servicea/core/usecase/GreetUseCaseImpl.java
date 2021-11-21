@@ -3,6 +3,7 @@ package io.codebyexample.servicea.core.usecase;
 import io.codebyexample.servicea.core.entity.Greeting;
 import io.codebyexample.servicea.dataprovider.serviceb.MessageB;
 import io.codebyexample.servicea.dataprovider.serviceb.ServiceBClient;
+import io.codebyexample.servicea.dataprovider.servicec.MessageC;
 import io.codebyexample.servicea.dataprovider.servicec.ServiceCClient;
 import io.codebyexample.servicea.dataprovider.servicec.ServiceCClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class GreetUseCaseImpl implements GreetUseCase {
 
   @Override
   public Greeting greetC(int id) {
-    String messageC = serviceCClient.greet(id);
-    return new Greeting(id, "MessageA -> " + messageC);
+    MessageC messageC = serviceCClient.greet(id);
+    return new Greeting(id, "MessageA -> " + messageC.getMessage());
   }
 }

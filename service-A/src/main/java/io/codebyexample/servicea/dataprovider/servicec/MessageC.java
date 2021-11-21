@@ -1,4 +1,4 @@
-package io.codebyexample.serviceb.core.entity;
+package io.codebyexample.servicea.dataprovider.servicec;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,9 +10,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-public class Greeting {
+public class MessageC {
 
-  private int id;
   private String message;
 
 }
