@@ -1,0 +1,38 @@
+version: "3.4"
+services:
+  service-a:
+    build: ./service-A
+    container_name: 'service-a'
+    environment:
+      - spring_profiles_active=docker
+      - SERVICE_B_HOST=service-b
+      - SERVICE_C_HOST=service-c
+      - ZIPKIN_HOST=host.docker.internal
+    ports:
+      - 8081:8081
+    networks:
+      - spring-boot-sleuth-network
+  service-b:
+    build: ./service-B
+    container_name: 'service-b'
+    environment:
+      - spring_profiles_active=docker
+      - ZIPKIN_HOST=host.docker.internal
+    ports:
+      - 8082:8082
+    networks:
+      - spring-boot-sleuth-network
+  service-c:
+    build: ./service-C
+    container_name: 'service-c'
+    environment:
+      - spring_profiles_active=docker
+      - ZIPKIN_HOST=host.docker.internal
+    ports:
+      - 8183:8183
+    extra_hosts:
+      - "host.docker.internal:192.168.1.2"
+    networks:
+      - spring-boot-sleuth-network
+networks:
+  spring-boot-sleuth-network:

@@ -9,8 +9,19 @@ The example project for StringBoot service
 ## Project structure
 ```
 .
-├── spring-boot-sleuth
+├── service-A
 │   ├── Dockerfile
+│   ...
+├── service-B
+│   ├── Dockerfile
+│   ...
+├── service-C
+│   ├── Dockerfile
+│   ...
+├── infrastructure
+│   ├── docker-compose-jaeger.yaml
+│   │
+│   ├── docker-compose-zipkin.yaml
 │   ...
 ├── docker-compose.yaml
 |
@@ -26,17 +37,42 @@ The example project for StringBoot service
 
 ## Start infrastructure
 
+- Start Zipkin
+
 ```shell script
-$ docker-compose -f ./docker-compose-infrastructure.yml -p spring-boot-infrastructure up -d
+$ docker-compose -f ./infrastructure/docker-compose-zipkin.yml up -d
+```
+
+or start Jaeger (stop Zipkin if have)
+
+```shell script
+$ cd infrastructure
+$ docker-compose -f ./infrastructure/docker-compose-jaeger.yml up -d
 ```
 
 ## Start services
 ### Start services in local
 
-- Build project
+- Start service-A 
 ```shell script
-$ ./mvnw clean package
-$ cd spring-boot-sleuth
+$ cd service-A
+$ ../mvnw clean package
+$ ../mvnw spring-boot:run
+...
+```
+
+- Start service-B
+```shell script
+$ cd service-B
+$ ../mvnw clean package
+$ ../mvnw spring-boot:run
+...
+```
+
+- Start service-C
+```shell script
+$ cd service-B
+$ ../mvnw clean package
 $ ../mvnw spring-boot:run
 ...
 ```
@@ -44,13 +80,14 @@ $ ../mvnw spring-boot:run
 ### Start services in docker 
 
 ```shell script
-$ docker-compose -f ./docker-compose-service.yml -p spring-boot-service up -d
+$ docker-compose up -d
 ```
 
 ## Run testing
 
 ```shell script
-curl http://localhost:8081/greet?name=World
+curl http://localhost:8081/greetb/1
+curl http://localhost:8081/greetc/1
 ```
 
 ## Stop project
@@ -59,10 +96,14 @@ curl http://localhost:8081/greet?name=World
 - Stop infrastructure & services in docker
 
 ```shell script
-$ docker-compose -f ./docker-compose-infrastructure.yml -p spring-boot-infrastructure down
-$ docker-compose -f ./docker-compose-service.yml -p spring-boot-service down
+$ docker-compose -f ./infrastructure/docker-compose-zipkin.yml down
 ```
 
+or
+
+```shell script
+$ docker-compose -f ./infrastructure/docker-compose-jaeger.yml down
+```
 ## Contribute
 
 ## Reference
